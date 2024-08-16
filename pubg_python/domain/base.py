@@ -228,7 +228,12 @@ class Stats(Domain):
     def from_dict(self):
         super().from_dict()
         self.assists = self._data.get('assists')
+        self.avg_rank = self._data.get('avgRank')
+        self.best_tier = self._data.get('bestTier')
+        self.best_rank_point = self._data.get('bestRankPoint')
         self.boosts = self._data.get('boosts')
+        self.current_Tier = self._data.get('currentTier')
+        self.current_rank_point = self._data.get('currentRankPoint')
         self.dbnos = self._data.get('dBNOs')
         self.daily_kills = self._data.get('dailyKills')
         self.damage_dealt = self._data.get('damageDealt')
@@ -237,6 +242,7 @@ class Stats(Domain):
         self.headshot_kills = self._data.get('headshotKills')
         self.heals = self._data.get('heals')
         self.kills = self._data.get('kills')
+        self.kda = self._data.get('kda')
         self.longest_kill = self._data.get('longestKill')
         self.longest_time_survived = self._data.get('longestTimeSurvived')
         self.losses = self._data.get('losses')
@@ -260,6 +266,14 @@ class Stats(Domain):
         self.weekly_kills = self._data.get('weeklyKills')
         self.weekly_wins = self._data.get('weeklyWins')
         self.wins = self._data.get('wins')
+        self.win_ratio = self._data.get('winRatio')
+
+class Tier(Domain):
+
+    def from_dict(self):
+        super().from_dict()
+        self.tier = self._data.get('tier')
+        self.sub_tier = self._data.get('subTier')
 
 
 class Leaderboard(Domain):
