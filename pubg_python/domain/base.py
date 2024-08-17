@@ -221,6 +221,25 @@ class Playerseason(Domain):
         self.squad_fpp = Stats({'data': game_mode_stats.get('squad-fpp', {})})
 
 
+class RankedPlayerStats(Domain):
+
+    def from_dict(self):
+        squad_fpp = self.attributes.get('rankedGameModeStats').get('squad-fpp')
+        self.current_tier = Tier({'data': squad_fpp.get('currentTier')})
+        self.current_ranked_point = squad_fpp.get('currentRankedPoint')
+        self.best_tier = Tier({'data': squad_fpp.get('bestTier')})
+        self.rounds_played = squad_fpp.get('roundsPlayed')
+        self.avg_rank = squad_fpp.get('avgRank')
+        self.top_10_ratio = squad_fpp.get('top10Ratio')
+        self.win_ratio = squad_fpp.get('winRatio')
+        self.assists = squad_fpp.get('assists')
+        self.wins = squad_fpp.get('wins')
+        self.kda = squad_fpp.get('kda')
+        self.kills = squad_fpp.get('kills')
+        self.deaths = squad_fpp.get('deaths')
+        self.damage_dealt = squad_fpp.get('damageDealt')
+        self.dBNOs = squad_fpp.get('dBNOs')
+
 class Stats(Domain):
     # TODO: i don't think stats is really a domain
     # but just a collection of statuses
@@ -228,12 +247,8 @@ class Stats(Domain):
     def from_dict(self):
         super().from_dict()
         self.assists = self._data.get('assists')
-        self.avg_rank = self._data.get('avgRank')
-        self.best_tier = Tier({'data': self._data.get('bestTier')})
         self.best_rank_point = self._data.get('bestRankPoint')
         self.boosts = self._data.get('boosts')
-        self.current_Tier = Tier({'data': self._data.get('currentTier')})
-        self.current_rank_point = self._data.get('currentRankPoint')
         self.dbnos = self._data.get('dBNOs')
         self.daily_kills = self._data.get('dailyKills')
         self.damage_dealt = self._data.get('damageDealt')
@@ -266,7 +281,6 @@ class Stats(Domain):
         self.weekly_kills = self._data.get('weeklyKills')
         self.weekly_wins = self._data.get('weeklyWins')
         self.wins = self._data.get('wins')
-        self.win_ratio = self._data.get('winRatio')
 
 class Tier(Domain):
 
