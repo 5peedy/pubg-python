@@ -221,7 +221,7 @@ class Playerseason(Domain):
         self.squad_fpp = Stats({'data': game_mode_stats.get('squad-fpp', {})})
 
 
-class RankedPlayerStats(Domain):
+class Rankedplayerstats(Domain):
 
     def from_dict(self):
         squad_fpp = self.attributes.get('rankedGameModeStats').get('squad-fpp')
