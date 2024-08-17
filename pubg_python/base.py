@@ -79,6 +79,17 @@ class PUBG:
             return QuerySet(self.api_client, self.shard_url.join(
                'players/{}/seasons/{}'.format(player_id, season_id)))
 
+    def ranked_season(self, player_id, season_id=None):
+        if season_id is None:
+            return QuerySet(self.api_client, self.shard_url.join('seasons'))
+
+        if player_id is None:
+            raise RequiredFilterError(
+                'player_id is required for fetching seasons.')
+
+        return QuerySet(self.api_client, self.shard_url.join(
+            'players/{}/seasons/{}/ranked'.format(player_id, season_id)))
+
     def leaderboards(self, game_mode):
         return QuerySet(self.api_client, self.shard_url.join(
             'leaderboards/{}'.format(game_mode)))
