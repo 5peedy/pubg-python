@@ -224,6 +224,7 @@ class Playerseason(Domain):
 class Rankedplayerstats(Domain):
 
     def from_dict(self):
+        super().from_dict()
         squad_fpp = self.attributes.get('rankedGameModeStats').get('squad-fpp')
         self.current_tier = Tier({'data': squad_fpp.get('currentTier')})
         self.current_ranked_point = squad_fpp.get('currentRankedPoint')
