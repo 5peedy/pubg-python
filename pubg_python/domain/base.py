@@ -226,6 +226,10 @@ class Rankedplayerstats(Domain):
     def from_dict(self):
         super().from_dict()
         all_stats = self.attributes.get('rankedGameModeStats').get('squad-fpp')
+        if(not all_stats):
+            all_stats = self.attributes.get('rankedGameModeStats').get('duo-fpp')
+        if(not all_stats):
+            return None
         self.current_tier = Tier({'data': all_stats.get('currentTier')})
         self.current_ranked_point = all_stats.get('currentRankedPoint')
         self.best_tier = Tier({'data': all_stats.get('bestTier')})
