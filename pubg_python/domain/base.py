@@ -228,6 +228,10 @@ class Rankedplayerstats(Domain):
         all_stats = self.attributes.get('rankedGameModeStats').get('squad-fpp')
         if(not all_stats):
             all_stats = self.attributes.get('rankedGameModeStats').get('duo-fpp')
+        if (not all_stats):
+            all_stats = self.attributes.get('rankedGameModeStats').get('squad')
+        if (not all_stats):
+            all_stats = self.attributes.get('rankedGameModeStats').get('duo')
         if(not all_stats):
             return None
         self.current_tier = Tier({'data': all_stats.get('currentTier')})
